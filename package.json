@@ -1,10 +1,24 @@
 {
-  "name": "@koora/shared",
+  "name": "koora-break-live",
   "version": "1.0.0",
   "private": true,
-  "description": "Shared wire-contract types for the Koora Break live pipeline",
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "description": "Real-time match event pipeline: mock StatsPerform feed -> NestJS backend -> fan-out to match subscribers over Socket.IO",
+  "workspaces": [
+    "packages/*",
+    "apps/frontend"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "concurrently -n backend,frontend -c cyan,magenta \"npm:backend\" \"npm:frontend\"",
+    "dev-with-mock-server": "concurrently -n mock,backend,frontend -c yellow,cyan,magenta \"npm:mock\" \"npm:backend\" \"npm:frontend\"",
+    "dev-with-simulate": "concurrently -n mock,backend,frontend,sim -c yellow,cyan,magenta,green \"npm:mock\" \"npm:backend\" \"npm:frontend\" \"npm:simulate\"",
+    "mock": "ts-node -T apps/mock-statsperform/src/mock_server.ts",
+    "backend": "ts-node -T apps/backend/src/main.ts",
+    "frontend": "npm run dev --workspace frontend",
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
     "@nestjs/common": "^11.1.6",
     "@nestjs/core": "^11.1.6",
@@ -12,12 +26,17 @@
     "@nestjs/platform-socket.io": "^11.1.6",
     "@nestjs/websockets": "^11.1.6",
     "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
     "ws": "^8.18.3",
     "zod": "^3.25.76"
-
   },
   "devDependencies": {
-    "@types/node": "^26.1.1",
-    "@types/ws": "^8.18.1"
+    "@types/node": "^24.0.0",
+    "@types/ws": "^8.18.1",
+    "concurrently": "^9.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
