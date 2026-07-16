@@ -21,14 +21,11 @@ export interface MatchEventPush {
   emittedAt: string;
 }
 
-/** Provider health as reported by GET /api/simulator and inside LobbyUpdate. */
+/** Provider health as reported inside LobbyUpdate. */
 export interface ProviderStatus {
   /** backend currently holds a live feed connection to the provider */
   connected: boolean;
-  /** the provider's stream is emitting (false while paused) */
-  running: boolean;
 }
-
 /**
  * Pushed to members of the lobby room (`lobby:update`) at most once per
  * second, and only when the match list or provider status changed.
