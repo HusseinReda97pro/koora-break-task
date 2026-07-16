@@ -22,7 +22,7 @@ Other scripts: `npm run mock` / `npm run backend` / `npm run frontend` run each 
 ## Architecture
 
 ```mermaid
-flowchart LR
+flowchart TB
     MOCK["Mock StatsPerform<br/>ws://localhost:4001"]
 
     subgraph BE["Backend — NestJS :3000"]
