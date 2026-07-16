@@ -6,7 +6,15 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "ws": "^8.18.3"
+    "@nestjs/common": "^11.1.6",
+    "@nestjs/core": "^11.1.6",
+    "@nestjs/platform-express": "^11.1.6",
+    "@nestjs/platform-socket.io": "^11.1.6",
+    "@nestjs/websockets": "^11.1.6",
+    "reflect-metadata": "^0.2.2",
+    "ws": "^8.18.3",
+    "zod": "^3.25.76"
+
   },
   "devDependencies": {
     "@types/node": "^26.1.1",
